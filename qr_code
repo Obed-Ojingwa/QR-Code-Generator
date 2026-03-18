@@ -7,6 +7,7 @@ LONGITUDE =   7.01196
 
 
 
+
 OUTPUT_FILE   = "location_qr.png"  
 QR_BOX_SIZE   = 10                  
 QR_BORDER     = 4                   
