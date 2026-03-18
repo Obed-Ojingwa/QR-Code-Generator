@@ -1,0 +1,42 @@
+import qrcode
+from PIL import Image
+
+
+LATITUDE  =   4.48134    
+LONGITUDE =   7.01196    
+
+
+
+OUTPUT_FILE   = "location_qr.png"  
+QR_BOX_SIZE   = 10                  
+QR_BORDER     = 4                   
+QR_FILL_COLOR = "black"             
+QR_BACK_COLOR = "white"            
+
+
+# maps_url = f"https://www.google.com/maps?q={LATITUDE},{LONGITUDE}"
+# maps_url = f"https://www.google.com/maps/search/?api=1&query={LATITUDE},{LONGITUDE}"
+
+maps_url = "https://maps.app.goo.gl/6qcM8WXkVjCNf4uh8"
+
+print(f"Encoding URL: {maps_url}")
+
+
+qr = qrcode.QRCode(
+    version=1,                          
+    error_correction=qrcode.constants.ERROR_CORRECT_H,  # H = 30% damage tolerance
+    box_size=QR_BOX_SIZE,
+    border=QR_BORDER,
+)
+
+qr.add_data(maps_url)
+qr.make(fit=True)   # to auro resize
+
+
+img = qr.make_image(fill_color=QR_FILL_COLOR, back_color=QR_BACK_COLOR)
+
+
+img.save(OUTPUT_FILE)
+
+print(f"QR code saved as: {OUTPUT_FILE}")
+print(f"Scan it to open: {maps_url}")
